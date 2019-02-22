@@ -1,5 +1,5 @@
 {
-  "name": "sanity-plugin-dashboard-document-count",
+  "name": "sanity-plugin-dashboard-widget-document-count",
   "version": "0.0.1",
   "author": "Thomas Drevon <thomas@sanity.io>",
   "description": "Example dashboard widget for Sanity Content Studio",
