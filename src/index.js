@@ -2,7 +2,9 @@ import React from 'react'
 import sanityClient from 'part:@sanity/base/client'
 import styles from './DocumentCount.css'
 
-const documentCount$ = sanityClient.observable.fetch('count(*[]{_id})')
+const client = sanityClient.withConfig
+  ? sanityClient.withConfig({apiVersion: '1'})
+  : sanityClient
 
 class DocumentCount extends React.Component {
   state = {
@@ -10,9 +12,13 @@ class DocumentCount extends React.Component {
   }
 
   componentDidMount() {
-    documentCount$.subscribe(count => {
-      this.setState({count})
-    })
+    this.documentCount$ = client.observable.fetch('count(*[]._id)').subscribe(count => this.setState({count}))
+  }
+
+  componentWillUnmount() {
+    if (this.documentCount$) {
+      this.documentCount$.unsubscribe()
+    }
   }
 
   render() {
