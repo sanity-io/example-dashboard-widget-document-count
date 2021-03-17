@@ -1,33 +1,23 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import sanityClient from 'part:@sanity/base/client'
 import styles from './DocumentCount.css'
 
-const documentCount$ = sanityClient.observable.fetch('count(*[]{_id})')
+function DocumentCount() {
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    const documentCount$ = sanityClient.observable.fetch('count(*)').subscribe(setCount)
+    return () => documentCount$.unsubscribe()
+  }, [])
 
-class DocumentCount extends React.Component {
-  state = {
-    count: 0
-  }
-
-  componentDidMount() {
-    documentCount$.subscribe(count => {
-      this.setState({count})
-    })
-  }
-
-  render() {
-    const {count} = this.state
-
-    return (
-      <div className={styles.container}>
-        <h2>
-          <div>
-            You've got <code>{count}</code> tucked away
-          </div>
-        </h2>
-      </div>
-    )
-  }
+  return (
+    <div className={styles.container}>
+      <h2>
+        <div>
+          You have <code>{count}</code> documents in your dataset
+        </div>
+      </h2>
+    </div>
+  )
 }
 
 export default {

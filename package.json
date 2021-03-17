@@ -1,7 +1,7 @@
 {
   "name": "sanity-plugin-dashboard-widget-document-count",
   "version": "0.0.1",
-  "author": "Thomas Drevon <thomas@sanity.io>",
+  "author": "Sanity.io <hello@sanity.io>",
   "description": "Example dashboard widget for Sanity Content Studio",
   "homepage": "https://github.com/sanity-io/example-dashboard-document-count#readme",
   "public": true,
@@ -14,34 +14,26 @@
     "documents"
   ],
   "main": "lib/index.js",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/sanity-io/example-dashboard-document-count/issues"
   },
   "scripts": {
-    "build": "babel src -d lib --copy-files",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "sanipack build",
+    "postbuild": "sanipack verify"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sanity-io/example-dashboard-document-count.git"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.2.3",
-    "babel-plugin-syntax-class-properties": "^6.13.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
+    "babel-eslint": "^10.1.0",
     "eslint": "^4.3.0",
     "eslint-config-sanity": "^2.1.4",
-    "eslint-plugin-react": "^7.1.0"
+    "eslint-plugin-react": "^7.1.0",
+    "sanipack": "^1.0.8"
   },
   "peerDependencies": {
-    "prop-types": "^15.6 || ^16",
-    "react": "^16"
-  },
-  "dependencies": {
-    "get-it": "^4.1.4"
+    "react": "^16 || ^17"
   }
 }

@@ -1,4 +1,5 @@
 .DS_Store
+.eslintrc
 /src
 /example
 /node_modules
